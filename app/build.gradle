@@ -33,6 +33,7 @@ ext {
     junitVersion = '4.12'
     androidXTestJUnitVersion = '1.1.1'
     androidXTestEspressoVersion = '3.2.0'
+    materialComponentsVersion = '1.2.0'
 }
 
 dependencies {
@@ -42,7 +43,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "com.google.android.material:material:$materialComponentsVersion"
 
     testImplementation "junit:junit:$junitVersion"
 
