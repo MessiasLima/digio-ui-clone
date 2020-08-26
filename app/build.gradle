@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 30
@@ -39,6 +40,9 @@ dependencies {
     implementation "androidx.core:core-ktx:$coreKTXVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation "junit:junit:$junitVersion"
 
