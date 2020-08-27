@@ -34,6 +34,7 @@ ext {
     androidXTestJUnitVersion = '1.1.1'
     androidXTestEspressoVersion = '3.2.0'
     materialComponentsVersion = '1.2.0'
+    koinVersion = '2.1.6'
 }
 
 dependencies {
@@ -44,6 +45,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
     implementation "com.google.android.material:material:$materialComponentsVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
 
     testImplementation "junit:junit:$junitVersion"
 
