@@ -22,7 +22,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'API_BASE_URL', '"https://production.api.com"' // It is just to see how we can configure a different base api for different environments
         }
+
+        debug {
+            buildConfigField 'String', 'API_BASE_URL', '"https://7hgi9vtkdc.execute-api.sa-east-1.amazonaws.com"'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -35,6 +49,8 @@ ext {
     androidXTestEspressoVersion = '3.2.0'
     materialComponentsVersion = '1.2.0'
     koinVersion = '2.1.6'
+    retrofitVersion = '2.9.0'
+    liveDataKTXVersion = '2.3.0-alpha07'
 }
 
 dependencies {
@@ -44,8 +60,11 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationComponentVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataKTXVersion"
     implementation "com.google.android.material:material:$materialComponentsVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
     testImplementation "junit:junit:$junitVersion"
 

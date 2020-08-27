@@ -1,3 +1,0 @@
-package com.messiasjunior.digiointerfaceclone.repository
-
-class ProductRepository

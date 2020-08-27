@@ -1,6 +1,7 @@
 package com.messiasjunior.digiointerfaceclone
 
 import android.app.Application
+import com.messiasjunior.digiointerfaceclone.datasource.remoteDataSourceModule
 import com.messiasjunior.digiointerfaceclone.presentation.home.homeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,6 +15,7 @@ class DigioInterfaceCloneApplication : Application() {
             androidContext(this@DigioInterfaceCloneApplication)
             koin.loadModules(
                 listOf(
+                    remoteDataSourceModule,
                     homeModule
                 )
             )
