@@ -1,9 +1,13 @@
 package com.messiasjunior.digiointerfaceclone.presentation.home
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.messiasjunior.digiointerfaceclone.R
@@ -11,6 +15,7 @@ import com.messiasjunior.digiointerfaceclone.databinding.FragmentHomeBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
+    private lateinit var spotlightAdapter: SpotlightAdapter
     private val viewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
 
@@ -28,10 +33,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSpotlightViewPager()
+
+        viewModel.productsApiResponse.observe(viewLifecycleOwner) {
+            spotlightAdapter.setItems(it.spotlight)
+            setupDigioCashTitle(it.cash.title)
+        }
     }
 
     private fun setupSpotlightViewPager() {
-        val spotlightAdapter = SpotlightAdapter()
+        spotlightAdapter = SpotlightAdapter()
 
         binding.homeSpotlightViewPager.apply {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -42,9 +52,19 @@ class HomeFragment : Fragment() {
             val viewpagerOffset = resources.getDimensionPixelOffset(R.dimen.view_pager_offset)
             setPageTransformer(SpotlightPageTransformer(viewpagerOffset))
         }
+    }
 
-        viewModel.productsApiResponse.observe(viewLifecycleOwner) {
-            spotlightAdapter.setItems(it.spotlight)
-        }
+    private fun setupDigioCashTitle(title: String) {
+        val lastWord = title.split(" ").last()
+        val spannableString = SpannableString(title)
+
+        spannableString.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.grey)),
+            title.length - lastWord.length,
+            spannableString.length,
+            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        binding.homeDigioCashSectionTitle.setText(spannableString, TextView.BufferType.SPANNABLE)
     }
 }
