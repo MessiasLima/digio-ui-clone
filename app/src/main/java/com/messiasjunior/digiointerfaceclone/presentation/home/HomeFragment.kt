@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.messiasjunior.digiointerfaceclone.R
 import com.messiasjunior.digiointerfaceclone.databinding.FragmentHomeBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
+    private lateinit var productAdapter: ProductAdapter
     private lateinit var spotlightAdapter: SpotlightAdapter
     private val viewModel by viewModel<HomeViewModel>()
     private lateinit var binding: FragmentHomeBinding
@@ -33,9 +36,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSpotlightViewPager()
+        setupProductsRecyclerView()
 
         viewModel.productsApiResponse.observe(viewLifecycleOwner) {
             spotlightAdapter.setItems(it.spotlight)
+            productAdapter.setProducts(it.products)
             setupDigioCashTitle(it.cash.title)
         }
     }
@@ -66,5 +71,18 @@ class HomeFragment : Fragment() {
         )
 
         binding.homeDigioCashSectionTitle.setText(spannableString, TextView.BufferType.SPANNABLE)
+    }
+
+    private fun setupProductsRecyclerView() {
+        productAdapter = ProductAdapter()
+        with(binding.homeProductsSectionRecyclerView) {
+            adapter = productAdapter
+            itemAnimator = DefaultItemAnimator()
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
     }
 }
