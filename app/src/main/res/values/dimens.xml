@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    General     -->
+    <dimen name="layout_default_margin">16dp</dimen>
+
+    <!--    Home     -->
+    <dimen name="avatar_size">36dp</dimen>
+</resources>
