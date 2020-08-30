@@ -8,91 +8,97 @@
             type="com.messiasjunior.digiointerfaceclone.presentation.home.HomeViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.home.HomeFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/homeUserAvatar"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
-            android:layout_margin="@dimen/layout_default_margin"
-            android:src="@drawable/ic_user"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_margin"
-            android:text="@string/user_greeting"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-            app:layout_constraintBottom_toBottomOf="@id/homeUserAvatar"
-            app:layout_constraintStart_toEndOf="@id/homeUserAvatar"
-            app:layout_constraintTop_toTopOf="@id/homeUserAvatar" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/homeSpotlightViewPager"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/home_section_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeUserAvatar" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeDigioCashSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_margin"
-            android:layout_marginTop="@dimen/home_section_margin"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeSpotlightViewPager" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/homeDigioCashSectionCard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/layout_default_margin"
-            android:layout_marginTop="@dimen/layout_default_margin"
-            app:cardCornerRadius="@dimen/default_card_radius"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeDigioCashSectionTitle">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                imageUrl="@{ viewModel.productsApiResponse.cash.bannerURL }"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:id="@+id/homeUserAvatar"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_margin="@dimen/layout_default_margin"
+                android:src="@drawable/ic_user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_margin"
+                android:text="@string/user_greeting"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                app:layout_constraintBottom_toBottomOf="@id/homeUserAvatar"
+                app:layout_constraintStart_toEndOf="@id/homeUserAvatar"
+                app:layout_constraintTop_toTopOf="@id/homeUserAvatar" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeProductsSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_margin"
-            android:layout_marginTop="@dimen/home_section_margin"
-            android:text="@string/products"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeDigioCashSectionCard" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/homeSpotlightViewPager"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_section_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/homeUserAvatar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/homeProductsSectionRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/layout_default_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homeProductsSectionTitle" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeDigioCashSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_margin"
+                android:layout_marginTop="@dimen/home_section_margin"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/homeSpotlightViewPager" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/homeDigioCashSectionCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/layout_default_margin"
+                android:layout_marginTop="@dimen/layout_default_margin"
+                app:cardCornerRadius="@dimen/default_card_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/homeDigioCashSectionTitle">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    imageUrl="@{ viewModel.productsApiResponse.cash.bannerURL }"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeProductsSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_margin"
+                android:layout_marginTop="@dimen/home_section_margin"
+                android:text="@string/products"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/homeDigioCashSectionCard" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/homeProductsSectionRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/layout_default_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/homeProductsSectionTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>
