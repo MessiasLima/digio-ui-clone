@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
@@ -39,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 ext {
@@ -53,6 +58,7 @@ ext {
     retrofitVersion = '2.9.0'
     liveDataKTXVersion = '2.3.0-alpha07'
     viewPager2Version = '1.0.0'
+    glideVersion = '4.11.0'
 }
 
 dependencies {
@@ -68,6 +74,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "androidx.viewpager2:viewpager2:$viewPager2Version"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     testImplementation "junit:junit:$junitVersion"
 
