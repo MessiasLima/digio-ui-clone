@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.messiasjunior.digiointerfaceclone.R
 import com.messiasjunior.digiointerfaceclone.databinding.FragmentHomeBinding
+import com.messiasjunior.digiointerfaceclone.util.event.EventObserver
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -37,6 +39,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupSpotlightViewPager()
         setupProductsRecyclerView()
+        setupProductClickedEventHandling()
 
         viewModel.productsApiResponse.observe(viewLifecycleOwner) {
             spotlightAdapter.setItems(it.spotlight)
@@ -46,7 +49,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSpotlightViewPager() {
-        spotlightAdapter = SpotlightAdapter()
+        spotlightAdapter = SpotlightAdapter(viewModel)
 
         binding.homeSpotlightViewPager.apply {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -71,10 +74,13 @@ class HomeFragment : Fragment() {
         )
 
         binding.homeDigioCashSectionTitle.setText(spannableString, TextView.BufferType.SPANNABLE)
+        binding.homeDigioCashSectionCard.setOnClickListener {
+            viewModel.cashClicked()
+        }
     }
 
     private fun setupProductsRecyclerView() {
-        productAdapter = ProductAdapter()
+        productAdapter = ProductAdapter(viewModel)
         with(binding.homeProductsSectionRecyclerView) {
             adapter = productAdapter
             itemAnimator = DefaultItemAnimator()
@@ -84,5 +90,14 @@ class HomeFragment : Fragment() {
                 false
             )
         }
+    }
+
+    private fun setupProductClickedEventHandling() {
+        viewModel.productClickedEvent.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                findNavController().navigate(HomeFragmentDirections.showProduct(it))
+            }
+        )
     }
 }

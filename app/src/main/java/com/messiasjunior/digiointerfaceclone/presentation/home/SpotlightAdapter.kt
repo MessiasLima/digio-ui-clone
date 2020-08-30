@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.messiasjunior.digiointerfaceclone.databinding.ViewPagerItemSpotlightBinding
 import com.messiasjunior.digiointerfaceclone.model.SpotlightItem
 
-class SpotlightAdapter : RecyclerView.Adapter<SpotlightViewHolder>() {
+class SpotlightAdapter(
+    private val viewModel: HomeViewModel
+) : RecyclerView.Adapter<SpotlightViewHolder>() {
     private val items = mutableListOf<SpotlightItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int) =
@@ -16,6 +18,9 @@ class SpotlightAdapter : RecyclerView.Adapter<SpotlightViewHolder>() {
 
     override fun onBindViewHolder(holder: SpotlightViewHolder, position: Int) {
         holder.bind(items[position])
+        holder.itemView.setOnClickListener {
+            viewModel.spotlightItemClicked(items[position])
+        }
     }
 
     fun setItems(spotlight: List<SpotlightItem>) {

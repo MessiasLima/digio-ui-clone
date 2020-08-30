@@ -6,4 +6,5 @@
     <!--    Home     -->
     <string name="user_greeting">Olá, Maria</string>
     <string name="products">Produtos</string>
+    <string name="back">Voltar</string>
 </resources>

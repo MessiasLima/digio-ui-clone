@@ -10,8 +10,7 @@ fun loadImageURL(view: ImageView, imageUrl: String?) {
     imageUrl?.let {
         Glide.with(view)
             .load(it)
-            .placeholder(R.drawable.ic_default_picture)
-            .fallback(R.drawable.ic_default_picture)
+            .error(R.drawable.ic_default_picture)
             .into(view)
     }
 }

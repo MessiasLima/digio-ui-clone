@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.messiasjunior.digiointerfaceclone.databinding.RecyclerViewItemProductBinding
 import com.messiasjunior.digiointerfaceclone.model.Product
 
-class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductAdapter(
+    private val viewModel: HomeViewModel
+) : RecyclerView.Adapter<ProductViewHolder>() {
     private val products = mutableListOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int) = ProductViewHolder.create(parent)
@@ -15,6 +17,9 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bing(products[position])
+        holder.itemView.setOnClickListener {
+            viewModel.productClicked(products[position])
+        }
     }
 
     fun setProducts(products: List<Product>) {

@@ -15,4 +15,7 @@
     <dimen name="product_card_margin">12dp</dimen>
     <dimen name="product_image_margin">28dp</dimen>
 
+    <!--    Product     -->
+    <dimen name="product_image_max_height">200dp</dimen>
+
 </resources>
